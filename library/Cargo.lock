@@ -1101,6 +1101,8 @@ version = "0.1.0"
 dependencies = [
  "actix-cors",
  "actix-web",
+ "base64",
+ "bincode",
  "env_logger 0.9.3",
  "serde",
  "serde_json",

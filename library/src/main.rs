@@ -7,6 +7,7 @@ use actix_web::{
 };
 use env_logger::Env;
 use serde::{Deserialize, Serialize};
+use base64::{Engine as _, engine::{self, general_purpose}, alphabet};
 use sunscreen::{
     fhe_program,
     types::{bfv::Signed, Cipher},
@@ -45,12 +46,12 @@ fn lookup(
     sum
 }
 
-struct Server {
+pub struct Server {
     // Compiled database query program
     pub compiled_lookup: CompiledFheProgram,
 
     // FHE lookup server runtim
-    runtime: FheRuntime,
+    pub runtime: FheRuntime,
 }
 
 impl Server {
@@ -99,9 +100,9 @@ struct MyObj {
 
 #[derive(Serialize, Deserialize)]
 struct BookReq {
-    col_query: Ciphertext,
-    row_query: Ciphertext,
-    public_key: PublicKey,
+    col_query: String,
+    row_query: String,
+    public_key: String,
 }
 
 // This handler uses json extractor
@@ -113,13 +114,24 @@ async fn index(item: web::Json<MyObj>) -> HttpResponse {
 // This is the actual api command
 async fn grab_book(book: web::Json<BookReq>) -> HttpResponse {
     let req = book.into_inner();
-    let col_query = req.col_query;
-    let row_query = req.row_query;
-    let public_key = req.public_key;
+    let decoded_col_query = general_purpose::STANDARD.decode(&req.col_query).unwrap();
+    let col_query = sunscreen::Ciphertext::from(bincode::deserialize(&decoded_col_query).unwrap());
+    let decoded_row_query = general_purpose::STANDARD.decode(&req.row_query).unwrap();
+    let row_query = sunscreen::Ciphertext::from(bincode::deserialize(&decoded_row_query).unwrap());
+    let decoded_public_key = general_purpose::STANDARD.decode(&req.public_key).unwrap();
+    let public_key = sunscreen::PublicKey::from(bincode::deserialize(&decoded_public_key).unwrap());
+
+    let server = Server::setup().unwrap();
+    let res_ciphertext = server.run_query(col_query, row_query, &public_key).unwrap();
+
+    // transforming result ciphertext into string to send in json
+    let encoded = bincode::serialize(&res_ciphertext).unwrap();
+    let encoded_arr = &encoded[..];
+    let encoded_b64 = general_purpose::STANDARD.encode(encoded_arr);
 
 
-    let res = col_query;
-    HttpResponse::Ok().json(res)
+    // let res = col_query;
+    HttpResponse::Ok().json(encoded_b64)
 }
 
 
