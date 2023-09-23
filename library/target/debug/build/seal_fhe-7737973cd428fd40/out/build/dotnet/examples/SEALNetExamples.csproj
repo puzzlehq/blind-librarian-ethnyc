@@ -1,0 +1,34 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+    <TargetFramework>net6.0</TargetFramework>
+    <Authors>Microsoft Research</Authors>
+    <Company>Microsoft Corporation</Company>
+    <Description>.NET wrapper examples for Microsoft SEAL</Description>
+    <Copyright>Microsoft Corporation 2022</Copyright>
+  </PropertyGroup>
+
+  <PropertyGroup>
+    <PlatformTarget>x64</PlatformTarget>
+    <OutputPath>/Users/matt/Documents/GitHub/blind-librarian-ethnyc/library/target/debug/build/seal_fhe-7737973cd428fd40/out/build/bin/dotnet/$(Configuration)</OutputPath>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="$(ProjectDir)../src/SEALNet.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <SEALCBinaryFiles Condition="$([MSBuild]::IsOsPlatform(Windows))" Include="/Users/matt/Documents/GitHub/blind-librarian-ethnyc/library/target/debug/build/seal_fhe-7737973cd428fd40/out/build/bin\sealc.dll" />
+    <SEALCBinaryFiles Condition="$([MSBuild]::IsOsPlatform(Linux))" Include="/Users/matt/Documents/GitHub/blind-librarian-ethnyc/library/target/debug/build/seal_fhe-7737973cd428fd40/out/build/lib/libsealc.so*" />
+    <SEALCBinaryFiles Condition="$([MSBuild]::IsOsPlatform(OSX))" Include="/Users/matt/Documents/GitHub/blind-librarian-ethnyc/library/target/debug/build/seal_fhe-7737973cd428fd40/out/build/lib/libsealc*.dylib" />
+  </ItemGroup>
+
+  <Target Name="PostBuild" AfterTargets="PostBuildEvent">
+    <Copy SourceFiles="@(SEALCBinaryFiles)" DestinationFolder="$(TargetDir)" />
+  </Target>
+
+  <ItemGroup>
+    <Compile Include="/Users/matt/.cargo/registry/src/index.crates.io-6f17d22bba15001f/seal_fhe-0.8.1/SEAL\dotnet\examples\**\*.cs" />
+  </ItemGroup>
+</Project>
