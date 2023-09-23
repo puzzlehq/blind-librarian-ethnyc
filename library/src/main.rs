@@ -6,14 +6,22 @@ use actix_web::{
     App, HttpResponse, HttpServer,
 };
 use env_logger::Env;
+use serde::{Deserialize, Serialize};
 
-// Healthcheck endpoint
-#[get("/healthz")]
-async fn healthcheck(_: Data<Context>) -> HttpResponse {
-  HttpResponse::Ok().body("healthz")
+#[derive(Debug, Serialize, Deserialize)]
+struct MyObj {
+    name: String,
+    number: i32,
 }
 
-#[tokio::main]
+/// This handler uses json extractor
+async fn index(item: web::Json<MyObj>) -> HttpResponse {
+    println!("model: {:?}", &item);
+    HttpResponse::Ok().json(item.0) // <- send response
+}
+
+
+#[actix_web::main]
 async fn main() -> std::io::Result<()> {
     // Set up the logger
     env_logger::init_from_env(Env::default().default_filter_or("info"));
@@ -29,11 +37,10 @@ async fn main() -> std::io::Result<()> {
             )
             .wrap(Logger::default())
             .app_data(web::JsonConfig::default().limit(16_777_216))
-            .service(healthcheck)
-
+            .service(web::resource("/").route(web::post().to(index)))
 
     })
-    .bind(("0.0.0.0", 8080))
+    .bind(("0.0.0.0", 8080))?
     .run()
     .await
 }

@@ -1,0 +1,11 @@
+/Users/matt/Documents/GitHub/blind-librarian-ethnyc/library/target/debug/deps/socket2-7f6b07152169b60f.rmeta: /Users/matt/.cargo/registry/src/index.crates.io-6f17d22bba15001f/socket2-0.5.4/src/lib.rs /Users/matt/.cargo/registry/src/index.crates.io-6f17d22bba15001f/socket2-0.5.4/src/sockaddr.rs /Users/matt/.cargo/registry/src/index.crates.io-6f17d22bba15001f/socket2-0.5.4/src/socket.rs /Users/matt/.cargo/registry/src/index.crates.io-6f17d22bba15001f/socket2-0.5.4/src/sockref.rs /Users/matt/.cargo/registry/src/index.crates.io-6f17d22bba15001f/socket2-0.5.4/src/sys/unix.rs
+
+/Users/matt/Documents/GitHub/blind-librarian-ethnyc/library/target/debug/deps/libsocket2-7f6b07152169b60f.rlib: /Users/matt/.cargo/registry/src/index.crates.io-6f17d22bba15001f/socket2-0.5.4/src/lib.rs /Users/matt/.cargo/registry/src/index.crates.io-6f17d22bba15001f/socket2-0.5.4/src/sockaddr.rs /Users/matt/.cargo/registry/src/index.crates.io-6f17d22bba15001f/socket2-0.5.4/src/socket.rs /Users/matt/.cargo/registry/src/index.crates.io-6f17d22bba15001f/socket2-0.5.4/src/sockref.rs /Users/matt/.cargo/registry/src/index.crates.io-6f17d22bba15001f/socket2-0.5.4/src/sys/unix.rs
+
+/Users/matt/Documents/GitHub/blind-librarian-ethnyc/library/target/debug/deps/socket2-7f6b07152169b60f.d: /Users/matt/.cargo/registry/src/index.crates.io-6f17d22bba15001f/socket2-0.5.4/src/lib.rs /Users/matt/.cargo/registry/src/index.crates.io-6f17d22bba15001f/socket2-0.5.4/src/sockaddr.rs /Users/matt/.cargo/registry/src/index.crates.io-6f17d22bba15001f/socket2-0.5.4/src/socket.rs /Users/matt/.cargo/registry/src/index.crates.io-6f17d22bba15001f/socket2-0.5.4/src/sockref.rs /Users/matt/.cargo/registry/src/index.crates.io-6f17d22bba15001f/socket2-0.5.4/src/sys/unix.rs
+
+/Users/matt/.cargo/registry/src/index.crates.io-6f17d22bba15001f/socket2-0.5.4/src/lib.rs:
+/Users/matt/.cargo/registry/src/index.crates.io-6f17d22bba15001f/socket2-0.5.4/src/sockaddr.rs:
+/Users/matt/.cargo/registry/src/index.crates.io-6f17d22bba15001f/socket2-0.5.4/src/socket.rs:
+/Users/matt/.cargo/registry/src/index.crates.io-6f17d22bba15001f/socket2-0.5.4/src/sockref.rs:
+/Users/matt/.cargo/registry/src/index.crates.io-6f17d22bba15001f/socket2-0.5.4/src/sys/unix.rs:
