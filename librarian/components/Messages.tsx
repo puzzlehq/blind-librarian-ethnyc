@@ -26,7 +26,7 @@ function Messages() {
     <AccordionItem>
       <AccordionButton>
         <Heading fontSize="md" as="span" flex="1" textAlign="left">
-          Last Messages
+          Book Requests
         </Heading>
         <AccordionIcon />
       </AccordionButton>
@@ -58,14 +58,14 @@ function Messages() {
                   <AlertIcon />
 
                   <Flex flexDir={"column"} flexGrow={1}>
-                    <AlertTitle>{message.title}</AlertTitle>
+                    <AlertTitle>Book Request</AlertTitle>
                     <AlertDescription flexGrow={1}>
-                      {message.body}
+                      Someone's looking for some book but idk which bc i'm blind
                     </AlertDescription>
                   </Flex>
                   <Flex w="60px" justifyContent="center">
                     <Image
-                      src={message.icon}
+                      src={"/leather-book.png"}
                       alt="notification image"
                       height="60px"
                       rounded="full"

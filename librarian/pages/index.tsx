@@ -159,23 +159,26 @@ const Home: NextPage = () => {
   }, 12000);
 
   return (
-    <Flex w="full" flexDirection={"column"} maxW="700px">
+    <Flex w="full" flexDirection={"column"} maxW="800px">
       <Image
+        alignSelf={"center"}
+        boxSize='300px'
+        objectFit='cover'
         aria-label="WalletConnect"
         src={
           colorMode === "dark"
-            ? "/WalletConnect-white.svg"
-            : "/WalletConnect-black.svg"
+            ? "/ethnyc_librarian_cover.png"
+            : "/ethnyc_librarian_cover.png"
         }
       />
       <Heading alignSelf={"center"} textAlign={"center"} mb={6}>
-        Web3Inbox hooks
+        The Blind Librarian's Dashboard
       </Heading>
 
       <Flex flexDirection="column" gap={4}>
         {isSubscribed ? (
           <Flex flexDirection={"column"} alignItems="center" gap={4}>
-            <Button
+            {/* <Button
               leftIcon={<BsSendFill />}
               variant="outline"
               onClick={handleTestNotification}
@@ -186,8 +189,8 @@ const Home: NextPage = () => {
               loadingText="Sending..."
             >
               Send test notification
-            </Button>
-            <Button
+            </Button> */}
+            {/* <Button
               leftIcon={isBlockNotificationEnabled ? <FaPause /> : <FaPlay />}
               variant="outline"
               onClick={() =>
@@ -199,7 +202,7 @@ const Home: NextPage = () => {
             >
               {isBlockNotificationEnabled ? "Pause" : "Resume"} block
               notifications
-            </Button>
+            </Button> */}
             <Button
               leftIcon={<FaBellSlash />}
               onClick={unsubscribe}
@@ -241,10 +244,10 @@ const Home: NextPage = () => {
 
         {isSubscribed && (
           <Accordion defaultIndex={[1]} allowToggle mt={10} rounded="xl">
-            <Subscription />
+            {/* <Subscription /> */}
             <Messages />
-            <Preferences />
-            <Subscribers />
+            {/* <Preferences /> */}
+            {/* <Subscribers /> */}
           </Accordion>
         )}
       </Flex>
